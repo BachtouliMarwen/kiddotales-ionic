@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-title>Welcome</ion-title>
+  </div>
+  
+  <form>
+   <div class="ion-padding">
+    <ion-item>
+      <ion-input></ion-input>
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-input></ion-input>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-item>
+
+    <div>
+      <a [routerLink] = "['/reset-password']"></a>
+    </div>
+    <div>
+      <p> New member ? <a [routerLink] = "['/signup']"></a></p>
+    </div>
+   </div> 
+   <ion-fab vertical="bottom" horizontal="end" style="margin-bottom:30p ;">
+    <ion-fab-button></ion-fab-button>
+   </ion-fab>
+  </form>
+</ion-content>
