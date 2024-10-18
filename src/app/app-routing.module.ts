@@ -3,13 +3,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
     redirectTo: 'landing',
     pathMatch: 'full'
+  },
+  {
+    path: 'landing',
+    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
   },
   {
     path: 'login',
@@ -19,14 +19,29 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
   },
-  {
-    path: 'landing',
-    loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
-  },
+  
   {
     path: 'reset-password',
     loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
+  {
+    path: 'reader',
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./reader/home/home.module').then(m => m.HomePageModule)
+      }
+    ]
+  },
+  {
+    path: 'admin',
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({
