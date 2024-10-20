@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { User } from '../models/user.model';
+import { User, UserRole } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthServiceService {
       email,
       phone,
       gender,
-      role: 'reader'
+      role: UserRole.Reader
     };
 
     return this.firestore.collection('users').doc(userId).set(userData);

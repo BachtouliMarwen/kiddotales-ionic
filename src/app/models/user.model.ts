@@ -1,3 +1,8 @@
+export enum UserRole {
+    Admin = 'admin',
+    Reader = 'reader'
+}
+
 export interface User {
     id: string;
     firstName: string;
@@ -5,5 +10,5 @@ export interface User {
     email: string;
     phone: string;
     gender: string;
-    role: string;
+    role: UserRole;
 }

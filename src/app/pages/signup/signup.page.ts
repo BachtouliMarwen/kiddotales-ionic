@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
@@ -20,9 +21,7 @@ export class SignupPage implements OnInit {
 
   constructor(
     private authService: AuthServiceService,
-    private navCtrl: NavController,
-    private toastController: ToastController
-
+    private router: Router
   ) {
   this.firstName = '';
   this.lastName = '';
@@ -43,6 +42,7 @@ export class SignupPage implements OnInit {
       try {
         await this.authService.registerUser(this.firstName, this.lastName, this.email, this.password, this.phone, this.gender);
         console.log('User registered successfully!');
+        this.router.navigate(['/login']);
       }catch(error){
         console.error('error Error registering user:', error)
       }
