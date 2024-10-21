@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User, UserRole } from '../models/user.model';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,11 @@ export class AuthServiceService {
     const userData = userDoc.data() as User;
     
     return userData;    
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.ngFireAuth.authState.pipe (
+      map(user => !!user)
+    );
   }
 }

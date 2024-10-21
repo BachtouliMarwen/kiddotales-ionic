@@ -42,7 +42,7 @@ export class SignupPage implements OnInit {
       try {
         await this.authService.registerUser(this.firstName, this.lastName, this.email, this.password, this.phone, this.gender);
         console.log('User registered successfully!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['../login']);
       }catch(error){
         console.error('error Error registering user:', error)
       }

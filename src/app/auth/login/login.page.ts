@@ -27,9 +27,9 @@ export class LoginPage implements OnInit {
       const userData = await this.authService.loginUser(this.email,this.password);
       
       if (userData.role === UserRole.Admin ) {
-        this.router.navigate(['admin/dashboard'])
+        this.router.navigate(['../../admin'])
       }else if (userData.role === UserRole.Reader){
-        this.router.navigate(['reader/home'])
+        this.router.navigate(['../../reader'])
       }
     }catch(error){
       console.error('login failed:',error);

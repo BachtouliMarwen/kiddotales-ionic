@@ -1,46 +1,31 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'landing',
-    pathMatch: 'full'
-  },
-  {
-    path: 'landing',
-    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'signup',
-    loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
-  },
   
   {
-    path: 'reset-password',
-    loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+    path: 'splashscreen',
+    loadChildren: () => import('./splashscreen/splashscreen.module').then( m => m.SplashscreenModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
   },
   {
     path: 'reader',
-    children: [
-      {
-        path: 'home',
-        loadChildren: () => import('./reader/home/home.module').then(m => m.HomePageModule)
-      }
-    ]
-  },
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./reader/reader.module').then( m => m.ReaderModule)},
   {
     path: 'admin',
-    children: [
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)
-      }
-    ]
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule)
+  },
+
+  {
+    path: '',
+    redirectTo: 'splashscreen/landing',
+    pathMatch: 'full'
   }
 ];
 
