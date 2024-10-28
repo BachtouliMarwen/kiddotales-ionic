@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { CategoryFormPage } from './pages/category-form/category-form.page';
 
 const routes: Routes = [
   
@@ -21,11 +22,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule)
   },
+  
+  {path: 'addcategory', component: CategoryFormPage},
 
   {
     path: '',
     redirectTo: 'splashscreen/landing',
     pathMatch: 'full'
+  },
+  {
+    path: 'category-form',
+    loadChildren: () => import('./pages/category-form/category-form.module').then( m => m.CategoryFormPageModule)
   }
 ];
 

@@ -7,15 +7,13 @@
     margin-right: auto;
 }
 
-.landing-title{
+ion-title{
     font-size: 1.5rem;
-    font-family: "cursive";
     font-style: italic;
     white-space: normal;
     margin-top: 15px;
-}
-
-.landing-title .second-line{
-    display: block;
-    margin-left: 20px;
+    span{
+        display: block;
+        margin-left: 20px;
+    }
 }

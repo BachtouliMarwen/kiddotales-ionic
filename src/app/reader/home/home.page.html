@@ -1,20 +1,19 @@
 <ion-content [fullscreen]="true">
   <div class="header">
-    <h2>Hello,</h2>
+    <h1>Hello</h1>
     <ion-avatar>
       <img src="assets/pics/male-child.png" alt="child">
     </ion-avatar>
   </div>
 
-  <div class="search">
-    <ion-searchbar placeholder="Find a story you want to read"></ion-searchbar>
-  </div>
+  <app-search-bar></app-search-bar>
 
   <div class="categories">
-    <h3>Categories</h3>
-    <ion-chip>Adventure</ion-chip>
+    <app-category-item *ngFor="let category of categories" [category]="category"></app-category-item>
   </div>
 
-  
-
+  <h1 class="list-header">Stories</h1>
+  <div class="story-list">
+    <app-story-card></app-story-card>
+  </div>
 </ion-content>

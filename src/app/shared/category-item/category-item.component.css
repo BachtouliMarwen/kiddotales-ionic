@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.wrapper .image-card {
+  background-color: #c5eae7;
+  padding: 0.8rem;
+  border-radius: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.wrapper ion-img {
+  opacity: 0.8;
+}/*# sourceMappingURL=category-item.component.css.map */

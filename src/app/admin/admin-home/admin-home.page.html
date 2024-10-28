@@ -1,13 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>admin-home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" >
+  <div class="header" >
+    <h1>Hello</h1>
+    <ion-avatar>
+      <img src="assets/pics/male-child.png" alt="child">
+    </ion-avatar>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">admin-home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-button [routerLink]="['/addcategory']"> Add Category</ion-button>
+  
+  <div class="categories">
+    <app-category-item *ngFor="let category of categories" [category]="category"(click)="selectCategory(category)"></app-category-item>
+  </div>
+
+  <div *ngIf="selectedCategory">
+    <ion-button (click)="editCategory(selectedCategory)">Edit</ion-button>
+    <ion-button color="danger" (click)=" selectedCategory.id ? deleteCategory(selectedCategory.id) : null">Delete</ion-button>
+  </div>
+
 </ion-content>

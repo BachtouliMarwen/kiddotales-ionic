@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AdminHomePageRoutingModule } from './admin-home-routing.module';
 
 import { AdminHomePage } from './admin-home.page';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdminHomePageRoutingModule
-  ],
+    AdminHomePageRoutingModule,
+    SharedModule
+],
   declarations: [AdminHomePage]
 })
 export class AdminHomePageModule {}
