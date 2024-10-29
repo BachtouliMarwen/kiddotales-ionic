@@ -6,15 +6,23 @@
     </ion-avatar>
   </div>
 
-  <ion-button [routerLink]="['/addcategory']"> Add Category</ion-button>
+  <h1 class="list-header">Categories</h1>
   
   <div class="categories">
-    <app-category-item *ngFor="let category of categories" [category]="category"(click)="selectCategory(category)"></app-category-item>
+    <ion-item-sliding *ngFor="let category of categories">
+
+      <ion-item>
+        <app-category-item  [category]="category"></app-category-item>
+      </ion-item>
+
+      <ion-item-options slot="end">
+        <ion-item-option color="primary" (click)="editCategory(category.id!)" >Edit</ion-item-option>
+        <ion-item-option color="danger" (click)="confirmDelete(category.id!)">Delete</ion-item-option>
+      </ion-item-options>
+      
+    </ion-item-sliding>
   </div>
 
-  <div *ngIf="selectedCategory">
-    <ion-button (click)="editCategory(selectedCategory)">Edit</ion-button>
-    <ion-button color="danger" (click)=" selectedCategory.id ? deleteCategory(selectedCategory.id) : null">Delete</ion-button>
-  </div>
+  <ion-button [routerLink]="['/addcategory']"> Add Category</ion-button>
 
 </ion-content>

@@ -5,6 +5,8 @@ export class Story {
     title: string;
     content: string;
     categoryId: string;
+    categoryName?: string;
+    
 
     constructor(
         id: string|undefined = undefined,
@@ -16,5 +18,6 @@ export class Story {
         this.title = title;
         this.content = content;
         this.categoryId = category.id!;
+        this.categoryName = category.name;
     }
 }

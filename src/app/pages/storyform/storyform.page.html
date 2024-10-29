@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>New Story</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin-home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="storyForm" (ngSubmit)="addStory()">
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input formControlName="title" placeholder="Enter story title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Content</ion-label>
+      <ion-textarea formControlName="content" placeholder="Enter story content"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Category</ion-label>
+      <ion-select formControlName="categoryId" placeholder="Select Category">
+        <ion-select-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="storyForm.invalid">Add Story</ion-button>
+  </form>
+</ion-content>

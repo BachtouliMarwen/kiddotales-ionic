@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CategoryFormPageRoutingModule } from './category-form-routing.module';
 
-import { CategoryFormPage } from './category-form.page';
+import { CategoryFormPage } from './CategoryFormPage';
 
 @NgModule({
   imports: [

@@ -44,4 +44,9 @@ export class AuthServiceService {
       map(user => !!user)
     );
   }
+
+  logout() {
+    return this.ngFireAuth.signOut();
+  }
+  
 }

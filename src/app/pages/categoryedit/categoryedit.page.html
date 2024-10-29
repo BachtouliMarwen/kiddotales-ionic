@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Edit Category</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin-home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="categoryForm" (ngSubmit)="saveChanges()">
+    <ion-item>
+      <ion-label position="stacked">Category Name</ion-label>
+      <ion-input formControlName="name" placeholder="Enter category name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Image URL</ion-label>
+      <ion-input formControlName="image" placeholder="Enter image URL"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="categoryForm.invalid">Save Changes</ion-button>
+  </form>
+</ion-content>

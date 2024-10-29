@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
-import { CategoryFormPage } from './pages/category-form/category-form.page';
+import { CategoryFormPage } from './pages/category-form/CategoryFormPage';
+import { StoryformPage } from './pages/storyform/storyform.page';
 
 const routes: Routes = [
   
@@ -22,18 +23,27 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule)
   },
-  
-  {path: 'addcategory', component: CategoryFormPage},
 
+  { path: 'addcategory', component: CategoryFormPage},
+  { path: 'addstory', 
+    loadChildren: () => import('./pages/storyform/storyform.module').then(m => m.StoryformPageModule)
+  },
+  { path: 'categoryedit/:id',
+    loadChildren: () => import('./pages/categoryedit/categoryedit.module').then( m => m.CategoryeditPageModule)
+  },
+  { path: 'storyedit/:id',
+    loadChildren: () => import('./pages/storyedit/storyedit.module').then( m => m.StoryeditPageModule)
+  },
+  
   {
     path: '',
     redirectTo: 'splashscreen/landing',
     pathMatch: 'full'
   },
   {
-    path: 'category-form',
-    loadChildren: () => import('./pages/category-form/category-form.module').then( m => m.CategoryFormPageModule)
-  }
+    path: 'storydetail',
+    loadChildren: () => import('./pages/storydetail/storydetail.module').then( m => m.StorydetailPageModule)
+  },
 ];
 
 @NgModule({
