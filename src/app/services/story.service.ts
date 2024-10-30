@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Story } from '../models/story.model';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { Category } from '../models/category.model';
 
 @Injectable({
@@ -14,31 +14,41 @@ export class StoryService {
 
   getStories(){
     const stories$ = this.firestore.collection<Story>('stories').valueChanges({ idField: 'id' });
-  const categories$ = this.firestore.collection<Category>('categories').valueChanges({ idField: 'id' });
-
-  return combineLatest([stories$, categories$]).pipe(
-    map(([stories, categories]) => {
-      return stories.map(story => {
-        const category = categories.find(cat => cat.id === story.categoryId);
-        return {
-          ...story,
-          categoryName: category ? category.name : 'Unknown Category' // Default in case category not found
-        };
-      });
-    })
-  );
-}
-
-  getStoryById(id: string): Observable<Story> {
-    return this.firestore.collection<Story>('stories').doc(id).valueChanges().pipe(
-      map((story: Story | undefined) => {
-        if (!story) {
-          throw new Error(`Story with ID ${id} not found`);
-        }
-        return { ...story, id } as Story;
-      })
-    );
-  }
+    const categories$ = this.firestore.collection<Category>('categories').valueChanges({ idField: 'id' });
+    
+    return combineLatest([stories$, categories$]).pipe(
+      map(([stories, categories]) => {
+        return stories.map(story => {
+          const category = categories.find(cat => cat.id === story.categoryId);
+          return {
+            ...story,
+            categoryName: category ? category.name : 'Unknown Category'
+            };
+          });
+        })
+      );
+    }
+    
+    getStoryById(id: string): Observable<Story> {
+      return this.firestore.collection<Story>('stories').doc(id).valueChanges().pipe(
+        switchMap((story: Story | undefined) => {
+          if (!story) {
+            throw new Error(`Story with ID ${id} not found`);
+          }
+          return this.firestore.collection<Category>('categories').doc(story.categoryId).valueChanges().pipe(
+            map((category: Category | undefined) => {
+              console.log('Fetched Story:', story);
+              console.log('Fetched Category:', category);
+              return{
+                ...story,
+                id,
+                categoryName: category ? category.name : 'Unknown Category'
+              }
+            })
+          );
+        })
+      );
+    }
 
   getStoriesByCategory(categoryId: string) {
     return this.firestore

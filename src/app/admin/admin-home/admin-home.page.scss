@@ -45,3 +45,14 @@ ion-avatar {
   grid-gap: 1rem;
   margin-bottom: 2rem;
 }
+
+ion-button{
+  --box-shadow:none;
+  --border-radius: 1.8rem;
+  --background: #00b9b3;
+
+  text-transform: intial;
+  font-size: 1.2rem;
+  font-weight: 600;
+  height: 70px;
+}

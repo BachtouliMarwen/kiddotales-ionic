@@ -39,11 +39,29 @@ export class StoryformPage implements OnInit {
 
   addStory() {
     if (this.storyForm.valid) {
-      const newStory: Story = this.storyForm.value;
-      this.storyService.addStory(newStory).then(() => {
+      const newStory: Story = {
+        ...this.storyForm.value,
+        categoryName: '',
+      };
+  
+      this.storyService.addStory(newStory).then((docRef) => {
+        this.categoryService.getCategoryById(newStory.categoryId).subscribe(category => {
+          if (category) {
+            this.storyService.updateStory(docRef.id, { categoryName: category.name });
+          }
+        });
+  
         this.router.navigate(['/admin/stories']);
       });
     }
   }
 
+  /*addStory() {
+    if (this.storyForm.valid) {
+      const newStory: Story = this.storyForm.value;
+      this.storyService.addStory(newStory).then(() => {
+        this.router.navigate(['/admin/stories']);
+      });
+    }
+  }*/
 }

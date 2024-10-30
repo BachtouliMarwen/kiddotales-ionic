@@ -39,11 +39,11 @@
     </div>
     
     <div>
-      <ion-button type="submit" expand="block">Register</ion-button>
+      <ion-button type="submit" expand="block" [routerLink]="['/auth/login']">Register</ion-button>
     </div>
 
     <div>
-      <ion-button [routerLink]="['../login']" expand="block">Login</ion-button>
+      <ion-button expand="block" [routerLink]="['/auth/login']">Login</ion-button>
     </div>
   </form>
 </ion-content>

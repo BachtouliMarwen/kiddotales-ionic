@@ -12,12 +12,13 @@ export class Story {
         id: string|undefined = undefined,
         title: string = '',
         content: string = '',
-        category: Category,
+        categoryId: string = '',
+        categoryName: string | undefined = ' No Category'
     ){
         this.id = id;
         this.title = title;
         this.content = content;
-        this.categoryId = category.id!;
-        this.categoryName = category.name;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 }

@@ -17,6 +17,7 @@ export class StoryeditPage implements OnInit {
   story!: Story;
   categories: Category[] = []
   
+  
 
   constructor(
     private route: ActivatedRoute,

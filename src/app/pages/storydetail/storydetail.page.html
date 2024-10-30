@@ -1,13 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>storydetail</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="header">
+    <ion-buttons>
+      <ion-back-button defaultHref="/reader/home" color = "light">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon> 
+      </ion-back-button>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-button color="light" (click)="toggleLike()" color="light">
+        <ion-icon slot="icon-only" slot="icon-only" [name]="isLiked ? 'heart' : 'heart-outline'"></ion-icon> 
+      </ion-button>
+    </ion-buttons>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">storydetail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="storycard">
+    <div class="image">
+      <ion-img src="assets\icon\4545027.png"></ion-img>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <h1 class="ion-no-margin">{{ story?.title }}</h1>
+      </div>
+    </div>
+
+    <ion-chip>
+      <div class="rates">
+        <ion-icon name="pricetag-outline"></ion-icon>
+        {{ story?.categoryName }}
+      </div>      
+    </ion-chip>
+
+    <div class="about">
+      <h1>Content</h1>
+      <p>{{ story?.content }}</p>
+    </div>
+
+    <ion-button expand="block">Add your ending</ion-button>
+  </div>  
 </ion-content>

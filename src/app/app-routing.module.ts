@@ -34,16 +34,16 @@ const routes: Routes = [
   { path: 'storyedit/:id',
     loadChildren: () => import('./pages/storyedit/storyedit.module').then( m => m.StoryeditPageModule)
   },
+  { path: 'storydetail/:id',
+    loadChildren: () => import('./pages/storydetail/storydetail.module').then( m => m.StorydetailPageModule)
+  },
   
   {
     path: '',
     redirectTo: 'splashscreen/landing',
     pathMatch: 'full'
   },
-  {
-    path: 'storydetail',
-    loadChildren: () => import('./pages/storydetail/storydetail.module').then( m => m.StorydetailPageModule)
-  },
+  
 ];
 
 @NgModule({

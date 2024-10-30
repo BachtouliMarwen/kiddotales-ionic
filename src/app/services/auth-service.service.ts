@@ -48,5 +48,11 @@ export class AuthServiceService {
   logout() {
     return this.ngFireAuth.signOut();
   }
+
+  getCurrentUserId(): Observable<string | null> {
+    return this.ngFireAuth.authState.pipe(
+      map(user => user ? user.uid : null)
+    );
+  }
   
 }

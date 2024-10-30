@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Story } from 'src/app/models/story.model';
 
 @Component({
@@ -9,9 +10,15 @@ import { Story } from 'src/app/models/story.model';
 })
 export class StoryCardComponent  implements OnInit {
 
-  @Input() story: Story={ title:'', content:'', categoryId:'', categoryName:''}
+  @Input() story!: Story;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
+  goToStoryDetail(storyId: string){
+    this.router.navigate(['/storydetail', storyId])
+  }
 
   ngOnInit() {}
 

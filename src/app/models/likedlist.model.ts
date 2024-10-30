@@ -1,12 +1,9 @@
 export class LikedList {
-    LikedlistId?: string;
     userId: string;
-    storyIds: string[];
-    createdAt?: Date;
+    likedStoryIds: string[];
 
-    constructor(userId: string, storyIds: string[] = []){
+    constructor(userId: string, likedStoryIds: string[] = []) {
         this.userId = userId;
-        this.storyIds = storyIds;
-        this.createdAt = new Date;
+        this.likedStoryIds = likedStoryIds; // Initialize with empty array
     }
 }
